@@ -1,5 +1,5 @@
 // import { mailtrapClient, sender } from "../mailtrap/mailtrap.config.js";
-import {mailtrapClient, sender} from "../mailtrap/mailtrap.config.js"
+import {mailtrapClient, sender} from "./mailtrap.config.js"
 import { VERIFICATION_EMAIL_TEMPLATE } from "./emailTemplates.js";
 
 export const sendVerificationEmail = async (email, verificationToken) => {
@@ -19,3 +19,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
         throw new Error(`Failed to send verification email: ${error}`);
     }
 } 
+
+export const sendWelcomeEmail = async (email, name) => {
+    
+}
