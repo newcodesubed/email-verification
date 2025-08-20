@@ -1,5 +1,6 @@
 import express from 'express';
-import { login, logout, signup, verifyEmail, forgetPassword, resetPassword } from '../controlles/auth.controller.js';
+import { login, logout, signup, verifyEmail, forgetPassword, resetPassword, checkAuth } from '../controlles/auth.controller.js';
+import { verifyToken } from '../middleware/verifyToken.js';
 
 const router = express.Router();
 //verifyToken middleware is defined in your middleware directory
