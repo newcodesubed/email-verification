@@ -1,5 +1,8 @@
 import React from 'react'
 import FloatingShap from './components/FloatingShap'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
+import { Route, Routes } from 'react-router-dom'
 
 export default function App() {
   return (
@@ -26,6 +29,15 @@ export default function App() {
         left="-10%"
         delay={2}
       />
+
+      <Routes>
+        <Route path="/" element={"Home"} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage/>} />
+
+        {/* Add more routes as needed */}
+      </Routes>
+
       </div>
   )
 }
