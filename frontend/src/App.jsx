@@ -3,6 +3,7 @@ import FloatingShap from './components/FloatingShap'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import { Route, Routes } from 'react-router-dom'
+import { EmailVerificationPage } from './components/EmailVerificationPage'
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/" element={"Home"} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/verify-email" element={<EmailVerificationPage/>} />
 
         {/* Add more routes as needed */}
       </Routes>
