@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import { Route, Routes } from 'react-router-dom'
 import { EmailVerificationPage } from './components/EmailVerificationPage'
-
+import {Toaster} from 'react-hot-toast'
 export default function App() {
   return (
     <div className='min-h-screen bg-gradient-to-br
@@ -39,7 +39,7 @@ export default function App() {
 
         {/* Add more routes as needed */}
       </Routes>
-
+      <Toaster />
       </div>
   )
 }
