@@ -3,7 +3,7 @@ import FloatingShap from './components/FloatingShap'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import { Route, Routes } from 'react-router-dom'
-import { EmailVerificationPage } from './components/EmailVerificationPage'
+import { EmailVerificationPage } from './pages/EmailVerificationPage'
 import {Toaster} from 'react-hot-toast'
 export default function App() {
   return (
