@@ -12,6 +12,7 @@ import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
 import FloatingShap from './components/FloatingShap'
 import LoadingSpinner from './components/LoadingSpiner'
 import { useAuthStore } from './store/authStore'
+import { ResetPasswordPage } from './pages/ResetPasswordPage'
 
 //protecting routes that require authentication
 const ProtectedRoute = ({children})=>{
@@ -89,6 +90,11 @@ export default function App() {
         <Route path="/forgot-password" element={
           <RedirectAuthenticated>
             <ForgotPasswordPage/>
+          </RedirectAuthenticated>
+        } />
+        <Route path="/reset-password/:token" element={
+          <RedirectAuthenticated>
+            <ResetPasswordPage/>
           </RedirectAuthenticated>
         } />
 
