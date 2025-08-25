@@ -1,22 +1,24 @@
-import FloatingShap from './components/FloatingShap'
+import { Route, Routes } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import {Toaster} from 'react-hot-toast'
+
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import { EmailVerificationPage } from './pages/EmailVerificationPage'
+import { DashboardPage } from './pages/DashboardPage'
 
-import { Route, Routes } from 'react-router-dom'
-import {Toaster} from 'react-hot-toast'
+import FloatingShap from './components/FloatingShap'
 import { useAuthStore } from './store/authStore'
-import { useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
 
 //protecting routes that require authentication
 const ProtectedRoute = ({children})=>{
   const {isAuthenticated,user}= useAuthStore();
-  if(isAuthenticated){
+  if(!isAuthenticated){
     return <Navigate to='/login' replace />
   }
 
-  if(!user.isVerified){
+  if(user && !user.isVerified){
     return <Navigate to='/verify-email' replace />
   }
   return children;
@@ -30,8 +32,8 @@ function RedirectAuthenticated({ children }) {
 
 
 export default function App() {
-
-  const {isCheckingAuth, checkAuth, isAuthenticated, user}= useAuthStore();
+// isCheckingAuth,
+  const { checkAuth, isAuthenticated, user}= useAuthStore();
 
   useEffect(()=>{
     checkAuth();
@@ -67,7 +69,11 @@ export default function App() {
       />
 
       <Routes>
-        <Route path="/" element={"Home"} />
+        <Route path="/" element={
+          <ProtectedRoute>
+            <DashboardPage/>
+          </ProtectedRoute>
+        } />
         <Route path="/login" element={
           <RedirectAuthenticated>
             <LoginPage />
