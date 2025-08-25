@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import { EmailVerificationPage } from './pages/EmailVerificationPage'
 import { DashboardPage } from './pages/DashboardPage'
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
 
 import FloatingShap from './components/FloatingShap'
 import LoadingSpinner from './components/LoadingSpiner'
@@ -34,7 +35,7 @@ function RedirectAuthenticated({ children }) {
 
 export default function App() {
 
-  const { isCheckingAuth, checkAuth, isAuthenticated, user}= useAuthStore();
+  const { isCheckingAuth, checkAuth}= useAuthStore();
 
   useEffect(()=>{
     checkAuth();
@@ -85,8 +86,13 @@ export default function App() {
           </RedirectAuthenticated>
         } />
         <Route path="/verify-email" element={<EmailVerificationPage/>} />
+        <Route path="/forgot-password" element={
+          <RedirectAuthenticated>
+            <ForgotPasswordPage/>
+          </RedirectAuthenticated>
+        } />
 
-        {/* Add more routes as needed */}
+        
       </Routes>
       <Toaster />
       </div>
