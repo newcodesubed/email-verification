@@ -9,6 +9,7 @@ import { EmailVerificationPage } from './pages/EmailVerificationPage'
 import { DashboardPage } from './pages/DashboardPage'
 
 import FloatingShap from './components/FloatingShap'
+import LoadingSpinner from './components/LoadingSpiner'
 import { useAuthStore } from './store/authStore'
 
 //protecting routes that require authentication
@@ -32,15 +33,14 @@ function RedirectAuthenticated({ children }) {
 
 
 export default function App() {
-// isCheckingAuth,
-  const { checkAuth, isAuthenticated, user}= useAuthStore();
+
+  const { isCheckingAuth, checkAuth, isAuthenticated, user}= useAuthStore();
 
   useEffect(()=>{
     checkAuth();
   },[checkAuth])
 
-  console.log("isauthenticated", isAuthenticated);
-  console.log("user", user);
+  if(isCheckingAuth) return <LoadingSpinner/>
 
 
   return (
