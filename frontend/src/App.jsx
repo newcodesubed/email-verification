@@ -9,6 +9,19 @@ import { useAuthStore } from './store/authStore'
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 
+//protecting routes that require authentication
+const ProtectedRoute = ({children})=>{
+  const {isAuthenticated,user}= useAuthStore();
+  if(isAuthenticated){
+    return <Navigate to='/login' replace />
+  }
+
+  if(!user.isVerified){
+    return <Navigate to='/verify-email' replace />
+  }
+  return children;
+}
+
 //redirect authenticated user to the home page
 function RedirectAuthenticated({ children }) {
   const { isAuthenticated, user } = useAuthStore();
