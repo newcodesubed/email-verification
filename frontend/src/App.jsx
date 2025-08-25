@@ -1,12 +1,20 @@
 import FloatingShap from './components/FloatingShap'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
+import { EmailVerificationPage } from './pages/EmailVerificationPage'
 
 import { Route, Routes } from 'react-router-dom'
-import { EmailVerificationPage } from './pages/EmailVerificationPage'
 import {Toaster} from 'react-hot-toast'
 import { useAuthStore } from './store/authStore'
 import { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
+
+//redirect authenticated user to the home page
+function RedirectAuthenticated({ children }) {
+  const { isAuthenticated, user } = useAuthStore();
+  return (isAuthenticated && user.isVerified) ? <Navigate to="/" replace /> : children;
+}
+
 
 export default function App() {
 
@@ -47,8 +55,16 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={"Home"} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/login" element={
+          <RedirectAuthenticated>
+            <LoginPage />
+          </RedirectAuthenticated>
+        } />
+        <Route path="/signup" element={
+          <RedirectAuthenticated>
+            <SignUpPage/>
+          </RedirectAuthenticated>
+        } />
         <Route path="/verify-email" element={<EmailVerificationPage/>} />
 
         {/* Add more routes as needed */}
